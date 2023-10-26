@@ -1,0 +1,22 @@
+dateModified: 1698328497
+email:
+  fromEmail: cabrown02@gmail.com
+  fromName: craft4.test
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    4b6117c3-e921-44b5-9966-e771adda9159: Common # Common
+    c0233c3c-0e70-4ee9-985e-67a2882c0c43: craft4.test # craft4.test
+    fd0d5bb9-deb9-41be-b242-95a9e340cbcd: craft4.test # craft4.test
+system:
+  edition: solo
+  live: true
+  name: craft4.test
+  schemaVersion: 4.5.3.0
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true

@@ -1,0 +1,12 @@
+/.env
+/.env.example
+/.idea
+/vendor
+/web/cpresources
+/web/documents
+/web/feeds
+/web/.htaccess
+/web/images
+/web/uploads
+/web/cache
+/.DS_Store
