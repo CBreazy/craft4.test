@@ -3,6 +3,7 @@
 namespace modules\booty;
 
 use Craft;
+use modules\booty\twigextensions\Craft4Extension;
 use yii\base\Module as BaseModule;
 
 /**
@@ -12,29 +13,39 @@ use yii\base\Module as BaseModule;
  */
 class Module extends BaseModule
 {
+    // PUBLIC PROPERTIES
+    // =================================================
+    public static Module $plugin;
+
     public function init(): void
     {
-        Craft::setAlias('@modules/booty', __DIR__);
-
-        // Set the controllerNamespace based on whether this is a console or web request
-        if (Craft::$app->request->isConsoleRequest) {
-            $this->controllerNamespace = 'modules\\booty\\console\\controllers';
-        } else {
-            $this->controllerNamespace = 'modules\\booty\\controllers';
-        }
-
-        parent::init();
-
         // Defer most setup tasks until Craft is fully initialized
         Craft::$app->onInit(function() {
-            $this->attachEventHandlers();
-            // ...
+
+            self::$plugin = $this;
+
+            // Define a custom alias named after the namespace
+            Craft::setAlias('@modules/booty', __DIR__);
+
+            $this->_registerTwigExtensions();
+
+            // Set the controllerNamespace based on whether this is a console or web request
+            if (Craft::$app->request->isConsoleRequest) {
+                $this->controllerNamespace = 'modules\\booty\\console\\controllers';
+            } else {
+                $this->controllerNamespace = 'modules\\booty\\controllers';
+            }
         });
+
+        /* TEST LOG */
+//      Module::$plugin->log(__METHOD__, "foo", "_awesomeness.json");
     }
 
-    private function attachEventHandlers(): void
+    // PRIVATE METHODS
+    // =================================================
+    private function _registerTwigExtensions(): void
     {
-        // Register event handlers here ...
-        // (see https://craftcms.com/docs/4.x/extend/events.html to get started)
+        $extension = new Craft4Extension();
+        Craft::$app->getView()->registerTwigExtension($extension);
     }
 }
