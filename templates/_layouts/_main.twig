@@ -1,0 +1,82 @@
+{# ------- Set Global Variables ------- #}
+{% set env = getenv('CRAFT_ENVIRONMENT') %}
+{% set releaseVersion = "4.1.7.1" %}
+{% set currentUrl = craft.app.request.url %}
+
+{# ------- HTML Document ------- #}
+<!DOCTYPE html>
+<html lang="en" class="{{ htmlClass ?? '' }}">
+    {# ------- Head ------- #}
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+
+        {# ------- Meta Title ------- #}
+        {#    {% if metaTitle is not defined %} #}
+        {#        {% set metaTitle = (entry is defined and entry.metaTitle|length) ? entry.metaTitle : "" %} #}
+        {#    {% endif %} #}
+        <title>{# {{ metaTitle }} #} | craft4</title>
+
+        {# ------- Meta Description ------- #}
+        {#    {% if metaDescription is not defined %} #}
+        {#        {% set metaDescription = (entry is defined and entry.metaDescription|length) ? entry.metaDescription : "" %} #}
+        {#    {% endif %} #}
+        <meta name="description" content="{# {{ metaDescription }} #}">
+
+        {# ------- Robots ------- #}
+        {% if robots is not defined %}
+            {% set robots = "all" %}
+        {% endif %}
+        {% switch robots %}
+        {% case 'all' %}
+            <meta name="robots" content="all,follow">
+        {% case 'none' %}
+            <meta name="robots" content="none">
+        {% endswitch %}
+
+        {# ------- Canonical Url ------- #}
+        {#    {% if canonical is defined %} #}
+        {#        <link rel="canonical" href="{{ canonical }}"> #}
+        {#    {% elseif robots == "all" %} #}
+        {#        {% if entry is defined %} #}
+        {#            <link rel="canonical" href="{{ (entry.canonicalUrl is defined and entry.canonicalUrl|length) ? entry.canonicalUrl : entry.url }}"> #}
+        {#        {% else %} #}
+        {#            <link rel="canonical" href="{{ currentUrl }}"> #}
+        {#        {% endif %} #}
+        {#    {% endif %} #}
+
+        {# ------- Favicon ------- #}
+        <link href="/images/icons/favicon.png" rel="shortcut icon">
+
+        {# ------- CSS ------- #}
+        <link rel="stylesheet" href="/css/styles.css?v={{ releaseVersion }}">
+
+        {# ------- htmx ------- #}
+        <script src="https://unpkg.com/htmx.org@1.9.9"
+                integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX"
+                crossorigin="anonymous"></script>
+    </head>
+    {# ------- Body ------- #}
+    <body id="{{ bodyId ?? '' }}" class="{{ bodyClass ?? '' }}">
+        {# ------- Header ------- #}
+        {% if currentSite.handle =='default' %}
+            {# navigation #}
+            {#    {% include '/default/_includes/_navigation.twig' %} #}
+        {% endif %}
+        {# ------- Block: body ------- #}
+        {% block body %}
+
+        {% endblock %}
+
+        {# ------- Footer ------- #}
+        {% if currentSite.handle == 'default' %}
+            {#    {% include 'default/_includes/_footer.twig' %} #}
+        {% endif %}
+
+        {# ------- Block: js ------- #}
+        {% block js %}
+
+        {% endblock %}
+    </body>
+</html>
