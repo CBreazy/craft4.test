@@ -1,12 +1,29 @@
-dateModified: 1701444850
+dateModified: 1701449297
 email:
   fromEmail: cabrown02@gmail.com
   fromName: craft4.test
   transportType: craft\mail\transportadapters\Sendmail
+fs:
+  documentsFilesystem:
+    hasUrls: true
+    name: 'Documents Filesystem'
+    settings:
+      path: '@webroot/documents'
+    type: craft\fs\Local
+    url: /documents
+  imagesFilesystem:
+    hasUrls: true
+    name: 'Images Filesystem'
+    settings:
+      path: '@webroot/images'
+    type: craft\fs\Local
+    url: /images
 meta:
   __names__:
     0cfb4316-ac43-4c5d-832c-b277d633bab8: Home # Home
     4b6117c3-e921-44b5-9966-e771adda9159: Common # Common
+    44b357a6-20eb-4a99-b20e-41cbea58e519: Documents # Documents
+    b4a5e9fa-76f9-4e15-983b-813550dab81f: Images # Images
     baa4da62-193d-4a2d-8124-f9b1834d1bf4: Home # Home
     c0233c3c-0e70-4ee9-985e-67a2882c0c43: craft4.test # craft4.test
     fd0d5bb9-deb9-41be-b242-95a9e340cbcd: craft4.test # craft4.test
