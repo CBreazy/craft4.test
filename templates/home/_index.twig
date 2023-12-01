@@ -211,7 +211,7 @@
             formData.append('CRAFT_CSRF_TOKEN', csrfToken);
             formData.append('userId', userId);
 
-            fetch('/actions/playground/app/get-user-info', {
+            fetch('/actions/booty/app/get-user-info', {
                 method: 'POST',
                 body: formData,
             }).then(function (response) {
