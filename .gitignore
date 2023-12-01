@@ -1,12 +1,13 @@
 /.env
-/.env.example
 /.idea
+/node_modules
+/plugins
 /vendor
+/web/cache
 /web/cpresources
 /web/documents
 /web/feeds
-/web/.htaccess
+/web/gmc.xml
 /web/images
 /web/uploads
-/web/cache
-/.DS_Store
+.DS_Store
