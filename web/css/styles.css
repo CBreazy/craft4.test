@@ -602,6 +602,10 @@ video {
   text-align: center;
 }
 
+.font-manufaktur {
+  font-family: Manufaktur, sans-serif;
+}
+
 .text-7xl {
   font-size: 4.5rem;
   line-height: 1;

@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./templates/**/*.{html,twig}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'manufaktur': ["Manufaktur", "sans-serif"],
+        'futura': ["Futura", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 }
