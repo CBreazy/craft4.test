@@ -12,10 +12,261 @@
 {# ------- Block: body ------- #}
 {% block body %}
 
+    {# TODO - create a card for these individual tests (title, subtitle, button, etc. that works for all these different tests and UI elements)  #}
+    {# TODO - Idea - download my weight data from Wyze (entire history), use FeedMe to import the data, then create a visual from the data to disaply on the front end #}
+    {# TODO - transfer playground to craft4.test project and continue test development there #}
+    {# TODO - can you do a Craft project with React? Can I create a React test project and host it locally with nginx? #}
+    {# TODO - create a plugin #}
+
+    {# hidden inputs #}
+    <input id="userId" type="hidden" name="userId" value="{{ currentUser.id }}">
+    {{ csrfInput() }}
+
+
+    <div class="min-h-screen w-full lg:flex px-2 py-2 space-y-2 lg:space-y-0 lg:space-x-2">
+        {# card #}
+        <div class="w-full lg:w-1/4 bg-blue-300 px-4 py-6 rounded">
+            {# title #}
+            <p class="h4 text-white">Title AJAX</p>
+            {# results #}
+            <div class="results"></div>
+            {# button #}
+            <button class="btn text-white border-white text-xs">button</button>
+        </div>
+        <div class="w-full lg:w-1/4 bg-red-300 px-4 py-6 rounded">
+            {# title #}
+            <p class="h4 text-white">Title AJAX</p>
+            {# results #}
+            <div class="results"></div>
+            {# button #}
+            <button class="btn text-white border-white text-xs">button</button>
+        </div>
+        <div class="w-full lg:w-1/4 bg-orange-300 px-4 py-6 rounded">
+            {# title #}
+            <p class="h4 text-white">Title AJAX</p>
+            {# results #}
+            <div class="results"></div>
+            {# button #}
+            <button class="btn text-white border-white text-xs">button</button>
+        </div>
+
+        {# destructuring #}
+        <div class="border rounded px-4 py-2 space-y-3">
+            <div id="contact">
+                <p id="name">Chris Brown</p>
+                <p id="handle">CBreazy</p>
+                <p id="location">Traverse City, MI</p>
+            </div>
+            <button id="destructure" class="btn">destructure</button>
+        </div>
+
+        {# promise #}
+        <button id="promiseAll" class="btn">promise</button>
+
+        {# xml ajax #}
+        <div class="border rounded px-4 py-2 space-y-3">
+            <div id="xhrResults"></div>
+            <button id="xhr" class="btn">xml ajax call</button>
+        </div>
+
+        {# fetch #}
+        <div class="border rounded px-4 py-2 space-y-3">
+            <div id="fetchResults"></div>
+            <button id="fetching" class="btn">fetching</button>
+        </div>
+
+        {# userInfo via twig extension #}
+        {% if currentUser %}
+            <div class="border rounded px-4 py-2 space-y-3">
+                <div>
+                    <h6>Account Info</h6>
+                    <p class="text-xs">(retrieved via twig extension)</p>
+                    <ul>
+                        {% set results = getUserInfo(1) %}
+                        {% for key, value in results %}
+                            <li>{{ key }} :{{ value }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+
+        {# userInfo via POST request to Controller #}
+        {% if currentUser %}
+            <div class="border rounded px-4 py-2 space-y-3">
+                <div id="userInfoResults"></div>
+                <button id="userInfoBtn" class="btn">fetch user info</button>
+                <button id="removeInfo" class="btn hidden">remove info</button>
+            </div>
+        {% endif %}
+    </div>
+
 {% endblock %}
 
 {# ------- Block: js ------- #}
 {% block js %}
+    <script>
 
+        /* -------------- */
+        /* globals */
+        /* -------------- */
+        const destructure = document.getElementById("destructure");
+        const promiseAll = document.getElementById("promiseAll");
+        const xhr = document.getElementById("xhr");
+        const fetching = document.getElementById("fetching");
+        const userInfoBtn =  document.getElementById("userInfoBtn");
+        const removeInfo =  document.getElementById("removeInfo");
+
+
+        /* -------------- */
+        /* event listeners */
+        /* -------------- */
+        /* destructure object and assign variables */
+        destructure.addEventListener("click", (e) => {
+            let profile = {
+                n: e.target.closest('div').querySelector('#name').innerHTML,
+                h: e.target.closest('div').querySelector('#handle').innerHTML,
+                l: e.target.closest('div').querySelector('#location').innerHTML,
+            }
+            console.log(profile);
+
+            // destructure and create new vars at same time
+            const {n: name, h: handle, l: location} = profile;
+
+            console.log(name, handle, location);
+        });
+
+        /* chaining async functions with Promise.all() - https://ui.dev/c/modern-javascript/object-array-destructuring */
+        promiseAll.addEventListener("click", (e) => {
+            Promise.all([sum({num1: 1, num2: 1}), 10]).then(
+                ([sum, constant]) => {
+                    console.log(sum + constant);
+                }
+            )
+        });
+
+        /* basic ajax call on click */
+        xhr.addEventListener("click", loadDoc);
+
+        // basic fetch
+        fetching.addEventListener("click", (e) => {
+            let url = 'https://craft4.test/documents/ajax-info-obj.txt';
+            fetch(url, {method: 'GET'}).then(Result => Result.json()).then(string => {
+                // log response
+                console.log(string);
+                // Printing a field of our response
+                console.log(`Title of our response :  ${string.title}`);
+            }).catch(errorMsg => {
+                console.warn(errorMsg);
+            })
+        });
+
+        // post to controller and receive user info
+        userInfoBtn.addEventListener("click", (e) => {
+            let userId = document.getElementById("userId").value;
+            displayUserInfo(userId);
+        });
+
+        // remove user info from the results div
+        removeInfo.addEventListener('click', () => {
+            removeUserInfo();
+        })
+
+        /* -------------- */
+        /* functions */
+        /* -------------- */
+        // loadDoc - returns hardcoded text file via ajax XML request
+        function loadDoc() {
+            // create request object
+            let xhr = new XMLHttpRequest();
+
+            // making connection
+            let url = 'https://craft4.test/documents/ajax-info.txt';
+            xhr.open("GET", url, true);
+
+            // execute after successful request
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById('xhrResults').innerHTML = this.responseText;
+                }
+            };
+            // send request
+            xhr.send();
+        }
+
+        // sum - return sum of 2 numbers
+        // set the default value of each property in the same place where we just destructured the parameters
+        // because we are passing in an object, the order of the parameters no longer matters
+        const sum = ({num1 = 0, num2 = 0}) => {
+            return num1 + num2;
+        }
+
+        // POST request to a php controller in module\playground
+        // displayUserInfo
+        const displayUserInfo = (userId) => {
+            // Set the form values
+            let formData = new FormData(),
+                csrfToken = document.querySelector("input[name='CRAFT_CSRF_TOKEN']").value;
+            formData.append('CRAFT_CSRF_TOKEN', csrfToken);
+            formData.append('userId', userId);
+
+            fetch('/actions/playground/app/get-user-info', {
+                method: 'POST',
+                body: formData,
+            }).then(function (response) {
+                // Set the response data to be json
+                return response.text();
+            }).then(response => {
+                // store response as userData
+                let userData = JSON.parse(response);
+                // destructure and create new vars at same time
+                const {userName: userName, fullName: fullName, email: email} = userData;
+                // results container
+                let resultsContainer = document.getElementById('userInfoResults');
+                // Update the results container using template literals
+                resultsContainer.innerHTML = `<p class="userDatum">${userName}</p>
+                                              <p class="userDatum">${fullName}</p>
+                                              <p class="userDatum">${email}</p>`;
+                // hide the fetch button
+                userInfoBtn.classList.add('hidden');
+                // show the remove info button
+                removeInfo.classList.remove('hidden');
+            }).catch(function (err) {
+                // Failure
+                console.warn('FAIL!', err);
+            });
+        };
+
+        const removeUserInfo = () => {
+            let userData = document.querySelectorAll('.userDatum');
+            userData.forEach((datum) => {
+                datum.remove();
+            });
+            // hide the remove info button
+            removeInfo.classList.add('hidden');
+            // show the display data button
+            userInfoBtn.classList.remove('hidden');
+        }
+
+        /* --------------------- */
+        /* Promises */
+        /* --------------------- */
+        function onSuccess() {
+            console.log("success!");
+        }
+
+        function onError() {
+            console.log("💩!");
+        }
+
+        function getUser(id) {
+            return new Promise((resolve, reject) => {
+
+            })
+        }
+
+
+    </script>
 {% endblock %}
 

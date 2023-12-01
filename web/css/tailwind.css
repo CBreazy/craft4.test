@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    /* BASIC button */
+    .btn { @apply inline-flex justify-center rounded-md border py-2 px-4 text-sm font-bold uppercase shadow-sm
+    focus:outline-none focus:ring focus:ring-neutral-300
+    disabled:bg-neutral-300 disabled:text-white disabled:cursor-not-allowed disabled:hover:bg-neutral-300 disabled:hover:text-white }
+
+    /* ---------------------- */
+    /* Typography */
+    /* ---------------------- */
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {@apply font-bold text-black uppercase}
+    h1, .h1 {@apply text-3xl sm:text-4xl}
+    h2, .h2 {@apply text-2xl sm:text-3xl}
+    h3, .h3 {@apply text-xl sm:text-2xl}
+    h4, .h4 {@apply text-lg sm:text-xl}
+    h5, .h5 {@apply text-base sm:text-lg}
+    h6, .h6 {@apply text-sm sm:text-base}
+
+    /* Fonts */
+
+    @font-face {
+        font-family: Futura;
+        src: url('/fonts/Futura.ttc') format("ttc");
+        font-weight: 400;
+        font-style: normal;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: Manufaktur;
+        src: url('/fonts/Manufaktur-Light.ttc') format("ttc");
+        font-weight: 200;
+        font-style: bold;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: Manufaktur;
+        src: url('/fonts/Manufaktur-Medium.ttc') format("ttc");
+        font-weight: 500;
+        font-style: medium;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: Manufaktur;
+        src: url('/fonts/Manufaktur-Heavy.ttc') format("ttc");
+        font-weight: 600;
+        font-style: heavy;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: Manufaktur;
+        src: url('/fonts/Manufaktur-Bold.ttc') format("ttc");
+        font-weight: 800;
+        font-style: bold;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: Manufaktur;
+        src: url('/fonts/Manufaktur-Black.ttc') format("ttc");
+        font-weight: 900;
+        font-style: black;
+        font-display: auto;
+    }
+}
