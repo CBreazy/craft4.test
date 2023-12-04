@@ -26,9 +26,10 @@
     {{ csrfInput() }}
 
 
-    <div class="min-h-screen w-full lg:flex px-2 py-2 space-y-2 lg:space-y-0 lg:space-x-2">
+    {# container #}
+    <div class="min-h-screen w-full md:flex px-2 py-2 space-y-2 md:space-y-0 md:space-x-2">
         {# card #}
-        <div class="w-full lg:w-1/4 bg-blue-300 px-4 py-6 rounded">
+        <div class="w-full self-start md:w-1/2 lg:w-1/4 bg-blue-300 px-4 py-6 rounded">
             {# title #}
             <p class="h4 text-white">Title AJAX</p>
             {# results #}
@@ -36,7 +37,8 @@
             {# button #}
             <button class="btn text-white border-white text-xs">button</button>
         </div>
-        <div class="w-full lg:w-1/4 bg-red-300 px-4 py-6 rounded">
+        {# card #}
+        <div class="w-full self-start md:w-1/2 lg:w-1/4 bg-red-300 px-4 py-6 rounded">
             {# title #}
             <p class="h4 text-white">Title AJAX</p>
             {# results #}
@@ -44,7 +46,8 @@
             {# button #}
             <button class="btn text-white border-white text-xs">button</button>
         </div>
-        <div class="w-full lg:w-1/4 bg-orange-300 px-4 py-6 rounded">
+        {# card #}
+        <div class="w-full self-start md:w-1/2 lg:w-1/4 bg-orange-300 px-4 py-6 rounded">
             {# title #}
             <p class="h4 text-white">Title AJAX</p>
             {# results #}
@@ -53,46 +56,47 @@
             <button class="btn text-white border-white text-xs">button</button>
         </div>
 
-        {# destructuring #}
-        <div class="border rounded px-4 py-2 space-y-3">
-            <div id="contact">
-                <p id="name">Chris Brown</p>
-                <p id="handle">CBreazy</p>
-                <p id="location">Traverse City, MI</p>
-            </div>
-            <button id="destructure" class="btn">destructure</button>
-        </div>
-
-        {# promise #}
-        <button id="promiseAll" class="btn">promise</button>
-
-        {# xml ajax #}
-        <div class="border rounded px-4 py-2 space-y-3">
-            <div id="xhrResults"></div>
-            <button id="xhr" class="btn">xml ajax call</button>
-        </div>
-
-        {# fetch #}
-        <div class="border rounded px-4 py-2 space-y-3">
-            <div id="fetchResults"></div>
-            <button id="fetching" class="btn">fetching</button>
-        </div>
-
-        {# userInfo via twig extension #}
-        {% if currentUser %}
+        <div>
+            {# destructuring #}
             <div class="border rounded px-4 py-2 space-y-3">
-                <div>
-                    <h6>Account Info</h6>
-                    <p class="text-xs">(retrieved via twig extension)</p>
-                    <ul>
-                        {% set results = getUserInfo(1) %}
-                        {% for key, value in results %}
-                            <li>{{ key }} :{{ value }}</li>
-                        {% endfor %}
-                    </ul>
+                <div id="contact">
+                    <p id="name">Chris Brown</p>
+                    <p id="handle">CBreazy</p>
+                    <p id="location">Traverse City, MI</p>
                 </div>
+                <button id="destructure" class="btn">destructure</button>
             </div>
-        {% endif %}
+
+            {# promise #}
+            <button id="promiseAll" class="btn">promise</button>
+
+            {# xml ajax #}
+            <div class="border rounded px-4 py-2 space-y-3">
+                <div id="xhrResults"></div>
+                <button id="xhr" class="btn">xml ajax call</button>
+            </div>
+
+            {# fetch #}
+            <div class="border rounded px-4 py-2 space-y-3">
+                <div id="fetchResults"></div>
+                <button id="fetching" class="btn">fetching</button>
+            </div>
+
+            {# userInfo via twig extension #}
+            {% if currentUser %}
+                <div class="border rounded px-4 py-2 space-y-3">
+                    <div>
+                        <h6>Account Info</h6>
+                        <p class="text-xs">(retrieved via twig extension)</p>
+                        <ul>
+                            {% set results = getUserInfo(1) %}
+                            {% for key, value in results %}
+                                <li>{{ key }} :{{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
 
         {# userInfo via POST request to Controller #}
         {% if currentUser %}
@@ -121,7 +125,6 @@
         const fetching = document.getElementById("fetching");
         const userInfoBtn =  document.getElementById("userInfoBtn");
         const removeInfo =  document.getElementById("removeInfo");
-
 
         /* -------------- */
         /* event listeners */
