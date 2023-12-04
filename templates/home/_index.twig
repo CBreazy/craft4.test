@@ -170,15 +170,10 @@
         });
 
         // post to controller and receive user info
-        userInfoBtn.addEventListener("click", (e) => {
-            let userId = document.getElementById("userId").value;
-            displayUserInfo(userId);
-        });
+        userInfoBtn.addEventListener("click", displayUserInfo);
 
         // remove user info from the results div
-        removeInfo.addEventListener('click', () => {
-            removeUserInfo();
-        })
+        removeInfo.addEventListener('click', removeUserInfo);
 
         /* -------------- */
         /* functions */
@@ -212,22 +207,25 @@
 
         // POST request to a php controller in module\playground
         // displayUserInfo
-        const displayUserInfo = (userId) => {
+        function displayUserInfo() {
             // Set the form values
             let formData = new FormData(),
-                csrfToken = document.querySelector("input[name='CRAFT_CSRF_TOKEN']").value;
+                csrfToken = document.querySelector("input[name='CRAFT_CSRF_TOKEN']").value,
+                userId = document.getElementById("userId").value;
             formData.append('CRAFT_CSRF_TOKEN', csrfToken);
             formData.append('userId', userId);
 
+            // fetch returns a promise that resolves with the HTTP response
             fetch('/actions/booty/app/get-user-info', {
                 method: 'POST',
                 body: formData,
-            }).then(function (response) {
-                // Set the response data to be json
+            }).then((response) => {
+                // read a string (results from POST request) out of the response using text()
+                // .text() returns a promise that resolves with a string
                 return response.text();
-            }).then(response => {
+            }).then(data => {
                 // store response as userData
-                let userData = JSON.parse(response);
+                let userData = JSON.parse(data);
                 // destructure and create new vars at same time
                 const {userName: userName, fullName: fullName, email: email} = userData;
                 // results container
@@ -245,8 +243,8 @@
                 console.warn('FAIL!', err);
             });
         };
-
-        const removeUserInfo = () => {
+        // removeUserInfo
+        function removeUserInfo() {
             let userData = document.querySelectorAll('.userDatum');
             userData.forEach((datum) => {
                 datum.remove();
@@ -268,11 +266,35 @@
             console.log("💩!");
         }
 
-        function getUser(id) {
-            return new Promise((resolve, reject) => {
-
+        function getPromise(id) {
+            return new Promise((resolve) => {
+                setTimeout(resolve({one: 'one', two: 'two', three: 'three'}), 2000);
             })
         }
+
+        const logA = (data) => {
+            console.log(data);
+        }
+
+        function logB() {
+            console.log("B");
+        }
+
+        function logCAndThrow() {
+            console.log("C");
+
+            throw new Error();
+        }
+
+        function catchError() {
+            console.log("Error!");
+        }
+
+        getPromise()
+            .then(logA) // data (reference)
+            .then(logB) // B (function)
+            .then(logCAndThrow) // C
+            .catch(catchError); // Error!
 
 
         /* ---------------------- */
