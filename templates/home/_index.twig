@@ -18,6 +18,9 @@
     {# TODO - can you do a Craft project with React? Can I create a React test project and host it locally with nginx? #}
     {# TODO - create a plugin #}
 
+    {# web component #}
+    <butt-butts></butt-butts>
+
     {# hidden inputs #}
     <input id="userId" type="hidden" name="userId" value="{{ currentUser.id }}">
     {{ csrfInput() }}
@@ -100,6 +103,8 @@
             </div>
         {% endif %}
     </div>
+
+    <my-component></my-component>
 
 {% endblock %}
 
@@ -266,6 +271,42 @@
             })
         }
 
+
+        /* ---------------------- */
+        /* web components testing */
+        /* ---------------------- */
+        // butts
+        class butts extends HTMLElement {
+            // The browser calls this method when the element is
+            // added to the DOM.
+            connectedCallback() {
+                this.innerHTML = "show butts"
+            }
+        }
+        // MyComponent
+        class MyComponent extends HTMLElement {
+            constructor() {
+                super();
+                this.shadow = this.attachShadow({ mode: "open" });
+            }
+
+            connectedCallback() {
+                this.shadow.innerHTML = `
+                <p>Hello from a web component!</p>
+                <style>
+                    p {
+                      color: pink;
+                      font-weight: bold;
+                      padding: 1rem;
+                      border: 4px solid pink;
+                    }
+                </style>`;
+            }
+        }
+
+        /* define custom components */
+        customElements.define('butt-butts', butts);
+        customElements.define('my-component', MyComponent);
 
     </script>
 {% endblock %}
