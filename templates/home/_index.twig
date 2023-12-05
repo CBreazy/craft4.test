@@ -16,6 +16,7 @@
     {# TODO - idea - download my weight data from Wyze (entire history), use FeedMe to import the data, then create a visual from the data to disaply on the front end #}
     {# TODO - create a React test project and host it locally with nginx? #}
     {# TODO - create a plugin #}
+    {# TODO - write a new frontend form validator using js and the web constraints api #}
 
     {# web component #}
     <butt-butts></butt-butts>
@@ -358,5 +359,85 @@
         customElements.define('butt-butts', butts);
         customElements.define('my-component', MyComponent);
 
+        /* ---------------------- */
+        /* objects */
+        /* ---------------------- */
+        // always ensure that the "new" keyword is used when creating class
+        function Animal(name, energy) {
+            if (this instanceof Animal === false) {
+                return new Animal(name, energy);
+            }
+
+            this.name = name;
+            this.energy = energy;
+        }
+
+        // attaching shared methods to the objects prototype
+        Animal.prototype.eat = function (amount) {
+          console.log(`${this.name} is eating.`);
+          this.energy += amount;
+        };
+
+        Animal.prototype.sleep = function (length) {
+          console.log(`${this.name} is sleeping.`);
+          this.energy += length;
+        };
+
+        Animal.prototype.play = function (length) {
+          console.log(`${this.name} is playing.`);
+          this.energy -= length;
+        };
+
+        // using "new" to call constructor function Animal create the "this" object for us and implicitly returns it (pattern: Pseudoclassical Instantiation)
+        const leo = new Animal("Leo", 7);
+        const snoop = new Animal("Snoop", 10);
+
+        leo.eat(10);
+        snoop.play(5);
+
+        /* ---------------------- */
+        /* classes */
+        /* ---------------------- */
+
+        /*
+        * Whenever you have a method that is specific to a class itself but
+        * doesn't need to be shared across instances of that class, you can add
+        * it as a static property of the class.
+        *
+        *
+        * */
+
+
+        class Thing {
+            constructor(name, energy) {
+                this.name = name;
+                this.energy = energy;
+            }
+            eat(amount) {
+                console.log(`${this.name} is eating.`);
+                this.energy += amount;
+            }
+            sleep(length) {
+                console.log(`${this.name} is sleeping.`);
+                this.energy += length;
+            }
+            play(length) {
+                console.log(`${this.name} is playing.`);
+                this.energy -= length;
+            }
+            static nextToEat(animals) {
+                const sortedByLeastEnergy = animals.sort((a, b) => {
+                  return a.energy - b.energy;
+                });
+
+                return sortedByLeastEnergy[0].name;
+                }
+            }
+
+        const jonny = new Thing("jonny", 7);
+        const goop = new Thing("goop", 10);
+
+        console.log(`next animal to eat is ${Thing.nextToEat([jonny, goop])}`); // Leo
+        console.log(`is goop an instance of Thing? ${goop instanceof Thing}`);
     </script>
 {% endblock %}
