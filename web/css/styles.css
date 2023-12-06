@@ -775,6 +775,10 @@ h6, .h6 {
   font-display: auto;
 }
 
+.static {
+  position: static;
+}
+
 .block {
   display: block;
 }
