@@ -1,1 +1,1 @@
-console.log("script is loaded");
+console.log("craft4.js has loaded")
