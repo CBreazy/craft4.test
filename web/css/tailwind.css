@@ -5,9 +5,27 @@
 @layer components {
 
     /* BASIC button */
-    .btn { @apply inline-flex justify-center rounded-md border py-2 px-4 text-sm font-bold uppercase shadow-sm
+    .btn { @apply inline-flex justify-center rounded-md border py-2 px-4 text-sm uppercase
     focus:outline-none focus:ring focus:ring-neutral-300
     disabled:bg-neutral-300 disabled:text-white disabled:cursor-not-allowed disabled:hover:bg-neutral-300 disabled:hover:text-white }
+
+    /* ---------------------- */
+    /* Forms */
+    /* ---------------------- */
+
+    /* input select textarea */
+    input, select, textarea { @apply block w-full text-sm border border-neutral-500 rounded text-neutral-700 placeholder-neutral-400 p-2 }
+
+    /* validation styles are applied based on valid:/invalid:, placeholder visibility, and focus */
+    input, textarea { @apply valid:[&:not(:placeholder-shown)]:border-green-600
+                    [&:not(:placeholder-shown):not(:focus):invalid~span]:block
+                    invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700
+    }
+
+    select { @apply valid:border-green-600 invalid:border-red-700 }
+
+    /* label */
+    label, .label { @apply block text-xs text-neutral-600 }
 
     /* ---------------------- */
     /* Typography */
