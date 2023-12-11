@@ -182,34 +182,18 @@
             </label>
 
             {# radio buttons #}
-{#            <fieldset class="flex flex-wrap">#}
-{#                <legend class="sr-only">choose a pill</legend>#}
-{#                <p class="label">Choose A Pill</p>#}
-{#                <div class="w-full space-y-2">#}
-{#                    <div>#}
-{#                        <input id="blue" type="radio" name="delivery-method" value="blue" class="hidden peer" data-validation-type="radio">#}
-{#                        <label for="blue" class="w-full relative text-sm text-neutral-700 bg-white border rounded-lg shadow-sm p-4 flex focus:outline-none peer-checked:bg-blue-700 peer-checked:text-white">Blue Pill</label>#}
-{#                    </div>#}
-
-{#                    <div>#}
-{#                        <input id="red" type="radio" name="delivery-method" value="red" class="hidden peer" data-validation-type="radio" required>#}
-{#                        <label for="red" class="w-full relative text-sm text-neutral-700 bg-white border rounded-lg shadow-sm p-4 flex focus:outline-none peer-checked:bg-red-700 peer-checked:text-white">Red Pill</label>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </fieldset>#}
-
             <fieldset class="flex flex-wrap">
                 <legend class="sr-only">choose a pill</legend>
                 <p class="label">Choose A Pill</p>
                 <div class="w-full space-y-2">
                     <div>
-                        <input id="blue" type="radio" name="delivery-method" value="blue" class="hidden peer" required>
-                        <label for="blue" class="w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Blue Pill</label>
+                        <input id="blue" type="radio" name="delivery-method" value="blue" class="h-[1px] w-[0px] peer focus:outline-none border-white" required>
+                        <label for="blue" class="peer-focus:border-2 peer-focus:border-blue-600 w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Blue Pill</label>
                     </div>
 
                     <div>
-                        <input id="red" type="radio" name="delivery-method" value="red" class="hidden peer">
-                        <label for="red" class="w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Red Pill</label>
+                        <input id="red" type="radio" name="delivery-method" value="red" class="h-[1px] w-[0px] peer focus:outline-none border-white">
+                        <label for="red" class="peer-focus:border-2 peer-focus:border-blue-600 w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Red Pill</label>
                     </div>
                 </div>
             </fieldset>

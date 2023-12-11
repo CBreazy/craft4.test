@@ -5,7 +5,7 @@
 @layer components {
 
     /* BASIC button */
-    .btn { @apply inline-flex justify-center rounded-md border py-2 px-4 text-sm uppercase
+    .btn { @apply inline-flex justify-center rounded-md border-2 font-bold text-neutral-700 border-neutral-700 py-2 px-4 text-sm uppercase
     focus:outline-none focus:ring focus:ring-neutral-300
     disabled:bg-neutral-300 disabled:text-white disabled:cursor-not-allowed disabled:hover:bg-neutral-300 disabled:hover:text-white }
 
