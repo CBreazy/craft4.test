@@ -1,0 +1,2 @@
+// validateInput.js
+
