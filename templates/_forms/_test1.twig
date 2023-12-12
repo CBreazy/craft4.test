@@ -1,0 +1,61 @@
+<div class="max-w-2xl mx-auto py-10 space-y-10">
+    <h2>Standard Form Elements: </h2>
+
+    <form id="test1" name="test1" method="post" class="space-y-4 border border-neutral-500 rounded px-6 py-10">
+        {# Text Input #}
+        <label for="fullName">Full Name
+            {{ input('text', 'fullName', data.fullName ?? null, {
+                id: 'fullName',
+                placeholder: 'Jon Dough',
+                pattern: '^[a-zA-Z ]+$',
+                autocomplete: 'name',
+                required: true,
+                'data-validate': '',
+                title: "Acceptable formats: Jon Doe, J Doe, Jon, Doe, JD"
+            }) }}
+        </label>
+
+        {# Number Input #}
+        <label for="quantity">Quantity
+            {{ input('number', 'quantity', data.quantity ?? null, {
+                id: 'quantity',
+                placeholder: 'enter a number 1 - 10',
+                autocomplete: 'quantity',
+                required: true,
+                min: '1',
+                max: '10',
+                step: '1',
+                'data-validate': '',
+            }) }}
+        </label>
+
+        {# Disabled Input #}
+        <label for="availability">Availability
+            {{ input('text', 'availability', "false", {
+                id: 'availability',
+                required: true,
+                disabled: true,
+                'data-validate': '',
+            }) }}
+        </label>
+
+        {# Phone #}
+        {# TODO - need a simple regex that accepts numbers, etc as this will currently allow letters, etc #}
+        <label for="phone">Phone
+            {{ input('tel', 'fields[phone]', data.phone ?? null, {
+                id: 'phone',
+                autocomplete: 'tel',
+                placeholder: '123-456-7890',
+                minLength: 10,
+                maxLength: 17,
+                required: true,
+                title: "acceptable formats: (xxx) xxx-xxxx, xxx-xxx-xxxx, xxx.xxx.xxxx, xxxxxxxxxx, +x (xxx) xxx-xxxx",
+                'data-validate': '',
+            }) }}
+        </label>
+
+        {# submit #}
+        <button type="submit" class="btn w-full">submit</button>
+    </form>
+
+</div> {# end test1 #}

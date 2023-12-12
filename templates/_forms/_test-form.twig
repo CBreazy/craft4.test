@@ -1,0 +1,141 @@
+<div class="max-w-2xl mx-auto py-10 space-y-10">
+    <h2>Standard Form Elements: </h2>
+
+    <form id="test-form" name="test-form" method="post" class="space-y-4 border border-neutral-500 rounded px-6 py-10">
+        {# Text Input #}
+        <div class="sm:col-span-2">
+            <label for="fullName">Full Name</label>
+            {{ input('text', 'fullName', data.fullName ?? null, {
+                id: 'fullName',
+                placeholder: 'Jon Dough',
+                autocomplete: 'name',
+                required: true,
+                'data-validate': '',
+            }) }}
+        </div>
+
+        {# Number Input #}
+        <label for="quantity">Quantity
+            {{ input('number', 'quantity', data.quantity ?? null, {
+                id: 'quantity',
+                placeholder: 'enter a number 1 - 10',
+                autocomplete: 'quantity',
+                required: true,
+                min: '1',
+                max: '10',
+                step: '1',
+                'data-validate': '',
+            }) }}
+        </label>
+
+        {# Disabled Input #}
+        <label for="availability">Availability
+            {{ input('text', 'availability', "false", {
+                id: 'availability',
+                required: true,
+                disabled: true,
+                'data-validate': '',
+            }) }}
+        </label>
+
+        {# Phone #}
+        <label for="phone">Phone
+            {{ input('tel', 'fields[phone]', data.phone ?? null, {
+                id: 'phone',
+                autocomplete: 'tel',
+                placeholder: '123-456-7890',
+                minLength: 10,
+                maxLength: 17,
+                required: true,
+                title: "acceptable formats: (xxx) xxx-xxxx, xxx-xxx-xxxx, xxx.xxx.xxxx, xxxxxxxxxx, +x (xxx) xxx-xxxx",
+                'data-validate': '',
+            }) }}
+        </label>
+
+
+        {# email #}
+        <label for="email">Email
+            {{ input('email', 'fields[email]', data.email ?? null, {
+                id: 'email',
+                autocomplete: 'email',
+                placeholder: 'me@email.com',
+                required: true,
+                'data-validate': '',
+            }) }}
+            <span class="hidden">error</span>
+        </label>
+
+        {# checkbox #}
+        <label for="rememberMe" class="flex">
+            {{ input('checkbox', 'rememberMe', '1', {
+                id: 'rememberMe',
+                class: 'inline self-start w-[13px] mr-1',
+                required: true,
+                'data-validate': '',
+            }) }}
+            Remember me
+        </label>
+
+        {# radio buttons #}
+        <fieldset class="flex flex-wrap">
+            <legend class="sr-only">choose a pill</legend>
+            <p class="label">Choose A Pill</p>
+            <div class="w-full space-y-2">
+                <div>
+                    <input id="blue" type="radio" name="delivery-method" value="blue" class="h-[1px] w-[0px] peer focus:outline-none border-white" required data-validate>
+                    <label for="blue" class="peer-focus:border-2 peer-focus:border-blue-600 w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Blue Pill</label>
+                </div>
+
+                <div>
+                    <input id="red" type="radio" name="delivery-method" value="red" class="h-[1px] w-[0px] peer focus:outline-none border-white" data-validate>
+                    <label for="red" class="peer-focus:border-2 peer-focus:border-blue-600 w-full relative text-sm text-neutral-600 bg-transparent border border-neutral-500 rounded p-4 flex focus:outline-none peer-checked:border-green-600  peer-indeterminate:peer-invalid:border-neutral-500 .peer-indeterminate:not(:peer-indeterminate):peer-invalid:border-red-700">Red Pill</label>
+                </div>
+            </div>
+        </fieldset>
+
+        {# Select (with preselected value) #}
+        <label for="country">Country
+            <select id="country"
+                    name="country"
+                    autocomplete="country-name"
+                    required data-validate>
+                <option value="" hidden></option>
+                <option value="canada">Canada</option>
+                <option value="mexico">Mexico</option>
+                <option value="united states" selected>United States</option>
+            </select>
+        </label>
+
+        {# Text Area #}
+        <label for="message">Message
+            <textarea name="message" id="message" placeholder="your message here" required></textarea>
+        </label>
+
+        {# Postal Code #}
+        {# Original Pattern for US postal codes only: ^[0-9]{5}(?:-[0-9]{4})?$ #}
+        {# New Pattern for US & Canadian postal codes: ^[0-9a-zA-Z ]*(?:-[0-9]{4})?$ #}
+        <label for="postalCode">Postal Code
+            {{ input('text', 'postalCode', data.postalCode ?? null, {
+                id: 'postalCode',
+                autocomplete: 'postalCode',
+                required: true,
+                placeholder: '12345-6789',
+                title: "acceptable formats: 12345, 12345-6789, A1A 1A1",
+            }) }}
+        </label>
+
+        {# password #}
+        <label for="password">Password
+            {{ input('password', 'password', null, {
+                id: 'password',
+                minlength: '6',
+                placeholder: '******',
+                required: true,
+            }) }}
+        </label>
+
+        {# submit #}
+        <button type="submit" class="btn w-full">submit</button>
+    </form>
+
+</div> {# end test-form #}
