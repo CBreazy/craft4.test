@@ -20,6 +20,8 @@
     input, textarea { @apply valid:[&:not(:placeholder-shown)]:border-green-600
                     [&:not(:placeholder-shown):not(:focus):invalid~span]:block
                     invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700
+                    invalid:[&:not(:placeholder-shown):not(:focus)]:bg-red-300
+                    invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-700
     }
 
     select { @apply valid:border-green-600 invalid:border-red-700 }
