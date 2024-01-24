@@ -1,0 +1,28 @@
+{# ------- Extends Main Layout ------- #}
+{% extends "_layouts/_main" %}
+
+{# ------- Define variables ------- #}
+{% set currentUrl = craft.app.request.url %}
+
+{# ------- Block: head ------- #}
+{% block head %}
+
+{% endblock %}
+
+{# ------- Block: body ------- #}
+{% block body %}
+
+    <p>Weight Data</p>
+
+    {% set weightData = craft.entries().section("weight").all() %}
+
+    {% for data in weightData %}
+        <p>{{ data.weight }}</p>
+    {% endfor %}
+
+{% endblock %}
+
+{# ------- Block: js ------- #}
+{% block js %}
+    <script>alert("{{ entry.title }}")</script>
+{% endblock %}

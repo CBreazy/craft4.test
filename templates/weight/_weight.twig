@@ -1,0 +1,23 @@
+{# ------- Extends Main Layout ------- #}
+{% extends "_layouts/_main" %}
+
+{# ------- Define variables ------- #}
+{% set currentUrl = craft.app.request.url %}
+
+{# ------- Block: head ------- #}
+{% block head %}
+
+{% endblock %}
+
+{# ------- Block: body ------- #}
+{% block body %}
+
+    <p>Date: {{ entry.title }}</p>
+    <p>Weight: {{ entry.weight }} lbs</p>
+
+{% endblock %}
+
+{# ------- Block: js ------- #}
+{% block js %}
+   <script></script>
+{% endblock %}
