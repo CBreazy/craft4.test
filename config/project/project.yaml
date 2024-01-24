@@ -1,4 +1,4 @@
-dateModified: 1701449297
+dateModified: 1706121040
 email:
   fromEmail: cabrown02@gmail.com
   fromName: craft4.test
@@ -22,10 +22,15 @@ meta:
   __names__:
     0cfb4316-ac43-4c5d-832c-b277d633bab8: Home # Home
     4b6117c3-e921-44b5-9966-e771adda9159: Common # Common
+    5fe88836-e2fa-4b3a-9713-74a77d808558: 'Weight Data' # Weight Data
+    8d17dc06-a3c8-40ab-a458-d2a4e7398c72: Weight # Weight
     44b357a6-20eb-4a99-b20e-41cbea58e519: Documents # Documents
+    096408e3-2eca-4e07-b29c-1052aeaa6d2a: 'Weight Data' # Weight Data
+    41890405-389c-4b88-89ef-86399eeafc3d: Weight # Weight
     b4a5e9fa-76f9-4e15-983b-813550dab81f: Images # Images
     baa4da62-193d-4a2d-8124-f9b1834d1bf4: Home # Home
     c0233c3c-0e70-4ee9-985e-67a2882c0c43: craft4.test # craft4.test
+    f1985717-d306-4738-8c3d-536283affe01: Date # Date
     fd0d5bb9-deb9-41be-b242-95a9e340cbcd: craft4.test # craft4.test
 system:
   edition: solo

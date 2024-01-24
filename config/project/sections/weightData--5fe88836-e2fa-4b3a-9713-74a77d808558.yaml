@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: weightData
+name: 'Weight Data'
+propagationMethod: all
+siteSettings:
+  fd0d5bb9-deb9-41be-b242-95a9e340cbcd: # craft4.test
+    enabledByDefault: true
+    hasUrls: true
+    template: weight/_weight-data.twig
+    uriFormat: weight-data
+type: single

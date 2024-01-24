@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: weight
+name: Weight
+propagationMethod: all
+siteSettings:
+  fd0d5bb9-deb9-41be-b242-95a9e340cbcd: # craft4.test
+    enabledByDefault: true
+    hasUrls: true
+    template: weight/_weight.twig
+    uriFormat: 'weight/{slug}'
+type: channel
