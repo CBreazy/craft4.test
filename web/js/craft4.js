@@ -2,9 +2,12 @@
 
 import getForms from "./getForms.js";
 import formIsValid from "./validateForm.js";
+import acquisitionsChart from "./acquisitions.js";
 
 // hip-hop anonymous
 (function(){
+    // show charts
+    acquisitionsChart();
     // get forms
     let forms = getForms();
 
