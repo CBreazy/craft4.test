@@ -74,12 +74,8 @@
     {#    {% include 'default/_includes/_footer.twig' %} #}
 {% endif %}
 
-{# craft4 js #}
-<script type="module" src="/js/craft4.js?v={{ releaseVersion }}"></script>
-{# users.js #}
-{#<script src="/js/users.js?v={{ releaseVersion }}"></script>#}
-{# dom.js #}
-{#<script type="module" src="/js/dom.js?v={{ releaseVersion }}"></script>#}
+{# webpack bundle #}
+<script src="/js/dist/bundle.js?v={{ releaseVersion }}"></script>
 
 {# ------- Block: js ------- #}
 {% block js %}
