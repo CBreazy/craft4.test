@@ -1,13 +1,14 @@
 // craft4.js
-
+import { APP } from "./App.js"
 import getForms from "./getForms.js";
 import formIsValid from "./validateForm.js";
-import acquisitionsChart from "./acquisitions.js";
+import weightChart from "./weightChart.js";
+window.APP = APP;
+window.APP.weightChart = weightChart;
+
 
 // hip-hop anonymous
 (function(){
-    // show charts
-    acquisitionsChart();
     // get forms
     let forms = getForms();
 

@@ -3,6 +3,14 @@
 
 {# ------- Define variables ------- #}
 {% set currentUrl = craft.app.request.url %}
+{% set weightData = craft.entries().section("weight").all() %}
+{% set weights = [] %}
+{% set dates = [] %}
+{% set foo = "foo" %}
+
+{% for data in weightData %}
+    {% set weights = weights|merge([data.weight]) %}
+{% endfor %}
 
 {# ------- Block: head ------- #}
 {% block head %}
@@ -11,18 +19,26 @@
 
 {# ------- Block: body ------- #}
 {% block body %}
-
-    <p>Weight Data</p>
-
-    {% set weightData = craft.entries().section("weight").all() %}
-
-    {% for data in weightData %}
-        <p>{{ data.weight }}</p>
-    {% endfor %}
-
+    <div>
+        <div class="w-1/2 mx-auto my-10">
+            <h2>{{ entry.title }}</h2>
+            <canvas id="weightChart"></canvas>
+        </div>
+    </div>
 {% endblock %}
 
 {# ------- Block: js ------- #}
 {% block js %}
-    <script>alert("{{ entry.title }}")</script>
+    <script>
+        const data = [
+            { date: 2010, weight: 10 },
+            { date: 2011, weight: 20 },
+            { date: 2012, weight: 15 },
+            { date: 2013, weight: 25 },
+            { date: 2014, weight: 22 },
+            { date: 2015, weight: 30 },
+            { date: 2016, weight: 28 },
+        ];
+        window.APP.weightChart(data);
+    </script>
 {% endblock %}

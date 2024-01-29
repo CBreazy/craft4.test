@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./web/js/acquisitions.js":
-/*!********************************!*\
-  !*** ./web/js/acquisitions.js ***!
-  \********************************/
+/***/ "./web/js/App.js":
+/*!***********************!*\
+  !*** ./web/js/App.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ \"./node_modules/chart.js/auto/auto.js\");\n/* i apparently need a bundler like webpack in order to use these node js modules */\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((async function () {\n  const data = [{\n    year: 2010,\n    count: 10\n  }, {\n    year: 2011,\n    count: 20\n  }, {\n    year: 2012,\n    count: 15\n  }, {\n    year: 2013,\n    count: 25\n  }, {\n    year: 2014,\n    count: 22\n  }, {\n    year: 2015,\n    count: 30\n  }, {\n    year: 2016,\n    count: 28\n  }];\n  console.log(data);\n  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__[\"default\"](document.getElementById('acquisitions'), {\n    type: 'bar',\n    data: {\n      labels: data.map(row => row.year),\n      datasets: [{\n        label: 'Acquisitions by year',\n        data: data.map(row => row.count)\n      }]\n    }\n  });\n})());\n\n//# sourceURL=webpack://craft4.test/./web/js/acquisitions.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   APP: () => (/* binding */ APP)\n/* harmony export */ });\nvar APP = {};\n\n\n//# sourceURL=webpack://craft4.test/./web/js/App.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _getForms_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getForms.js */ \"./web/js/getForms.js\");\n/* harmony import */ var _validateForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validateForm.js */ \"./web/js/validateForm.js\");\n/* harmony import */ var _acquisitions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./acquisitions.js */ \"./web/js/acquisitions.js\");\n// craft4.js\n\n\n\n\n\n// hip-hop anonymous\n(function () {\n  // show charts\n  (0,_acquisitions_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n  // get forms\n  let forms = (0,_getForms_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n  // add event listener to forms\n  forms.forEach(form => {\n    form.addEventListener('submit', event => {\n      event.preventDefault();\n\n      // if the form is valid, submit it boi\n      if ((0,_validateForm_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(form)) {\n        form.submit();\n      }\n    });\n  });\n})();\n\n//# sourceURL=webpack://craft4.test/./web/js/craft4.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _App_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.js */ \"./web/js/App.js\");\n/* harmony import */ var _getForms_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getForms.js */ \"./web/js/getForms.js\");\n/* harmony import */ var _validateForm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validateForm.js */ \"./web/js/validateForm.js\");\n/* harmony import */ var _weightChart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./weightChart.js */ \"./web/js/weightChart.js\");\n// craft4.js\n\n\n\n\nwindow.APP = _App_js__WEBPACK_IMPORTED_MODULE_0__.APP;\nwindow.APP.weightChart = _weightChart_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"];\n\n// hip-hop anonymous\n(function () {\n  // get forms\n  let forms = (0,_getForms_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\n  // add event listener to forms\n  forms.forEach(form => {\n    form.addEventListener('submit', event => {\n      event.preventDefault();\n\n      // if the form is valid, submit it boi\n      if ((0,_validateForm_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(form)) {\n        form.submit();\n      }\n    });\n  });\n})();\n\n//# sourceURL=webpack://craft4.test/./web/js/craft4.js?");
 
 /***/ }),
 
@@ -47,6 +47,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ formIsValid)\n/* harmony export */ });\n// validateForm.js\n\n// allAreTrue - evaluates a bool array\nfunction allAreTrue(arr) {\n  return arr.every(element => element === true);\n}\n\n// inputIsValid\nfunction inputIsValid(input) {\n  return input.checkValidity();\n}\n\n// formIsValid\nfunction formIsValid(form) {\n  // destructure elements into an array\n  let formElementsArray = [...form.elements],\n    boolArray = [];\n  console.log(formElementsArray);\n\n  // push the bool result of inputIsValid(node) into boolArray\n  formElementsArray.forEach(node => {\n    boolArray.push(inputIsValid(node));\n  });\n  console.log(boolArray);\n\n  // evaluate boolArray\n  if (allAreTrue(boolArray)) {\n    return true;\n  } else {\n    return false;\n  }\n}\n\n//# sourceURL=webpack://craft4.test/./web/js/validateForm.js?");
+
+/***/ }),
+
+/***/ "./web/js/weightChart.js":
+/*!*******************************!*\
+  !*** ./web/js/weightChart.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ weightChart)\n/* harmony export */ });\n/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ \"./node_modules/chart.js/auto/auto.js\");\n\nfunction weightChart(data) {\n  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__[\"default\"](document.getElementById('weightChart'), {\n    type: 'bar',\n    data: {\n      labels: data.map(row => row.date),\n      datasets: [{\n        label: 'Weight by Date',\n        data: data.map(row => row.weight)\n      }]\n    }\n  });\n}\n;\n\n//# sourceURL=webpack://craft4.test/./web/js/weightChart.js?");
 
 /***/ }),
 
