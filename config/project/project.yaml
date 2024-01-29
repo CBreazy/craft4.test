@@ -1,4 +1,4 @@
-dateModified: 1706121040
+dateModified: 1706554005
 email:
   fromEmail: cabrown02@gmail.com
   fromName: craft4.test
@@ -32,6 +32,11 @@ meta:
     c0233c3c-0e70-4ee9-985e-67a2882c0c43: craft4.test # craft4.test
     f1985717-d306-4738-8c3d-536283affe01: Date # Date
     fd0d5bb9-deb9-41be-b242-95a9e340cbcd: craft4.test # craft4.test
+plugins:
+  feed-me:
+    edition: standard
+    enabled: true
+    schemaVersion: 5.1.0.0
 system:
   edition: solo
   live: true
