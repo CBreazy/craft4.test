@@ -1,4 +1,4 @@
-dateModified: 1706554005
+dateModified: 1706555148
 email:
   fromEmail: cabrown02@gmail.com
   fromName: craft4.test
@@ -11,6 +11,13 @@ fs:
       path: '@webroot/documents'
     type: craft\fs\Local
     url: /documents
+  feedsFilesystem:
+    hasUrls: true
+    name: 'Feeds Filesystem'
+    settings:
+      path: '@webroot/feeds'
+    type: craft\fs\Local
+    url: /feeds
   imagesFilesystem:
     hasUrls: true
     name: 'Images Filesystem'
@@ -21,6 +28,7 @@ fs:
 meta:
   __names__:
     0cfb4316-ac43-4c5d-832c-b277d633bab8: Home # Home
+    1b0021f5-9d08-44e8-a2b8-30f69cea62f6: Feeds # Feeds
     4b6117c3-e921-44b5-9966-e771adda9159: Common # Common
     5fe88836-e2fa-4b3a-9713-74a77d808558: 'Weight Data' # Weight Data
     8d17dc06-a3c8-40ab-a458-d2a4e7398c72: Weight # Weight

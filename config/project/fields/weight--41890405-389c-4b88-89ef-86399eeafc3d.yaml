@@ -1,20 +1,19 @@
 columnSuffix: csgflgtr
-contentColumnType: 'decimal(11,1)'
+contentColumnType: text
 fieldGroup: 4b6117c3-e921-44b5-9966-e771adda9159 # Common
 handle: weight
 instructions: null
 name: Weight
 searchable: false
 settings:
-  decimals: 1
-  defaultValue: null
-  max: null
-  min: 0
-  prefix: null
-  previewCurrency: null
-  previewFormat: decimal
-  size: null
-  suffix: lbs
+  byteLimit: null
+  charLimit: null
+  code: false
+  columnType: null
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
 translationKeyFormat: null
 translationMethod: none
-type: craft\fields\Number
+type: craft\fields\PlainText
