@@ -1,0 +1,12 @@
+defaultPlacement: end
+enableVersioning: true
+handle: trials
+name: Trials
+propagationMethod: all
+siteSettings:
+  fd0d5bb9-deb9-41be-b242-95a9e340cbcd: # craft4.test
+    enabledByDefault: true
+    hasUrls: true
+    template: trials/_trial.twig
+    uriFormat: 'trials/{slug}'
+type: channel

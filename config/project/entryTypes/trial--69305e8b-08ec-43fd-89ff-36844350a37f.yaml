@@ -1,0 +1,46 @@
+fieldLayouts:
+  b6633d8f-d713-4506-848f-eeeb93ebedbf:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            disabled: false
+            elementCondition: null
+            id: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 33e0b690-9af3-47fd-b2fa-edf102388cd8
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 635037b7-168c-4657-8619-1b81f38af60e
+        userCondition: null
+handle: trial
+hasTitleField: true
+name: Trial
+section: f097b57f-9aed-46e3-a6ef-baf57d07bddc # Trials
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+sortOrder: 1
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -4,6 +4,8 @@
 
 @layer components {
 
+    .test { @apply border border-red-700 }
+
     /* BASIC button */
     .btn { @apply inline-flex justify-center rounded-md border-2 font-bold text-neutral-700 border-neutral-700 py-2 px-4 text-sm uppercase
     focus:outline-none focus:ring focus:ring-neutral-300
